@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ehCache
+  datasource:
+    url: jdbc:postgresql://localhost/postgres
+    username: postgres
+    password: root 
+  cache:  
+    jcache:
+      config: 
+        classpath:ehcache.xml
+  jpa:
+    show-sql: true 
