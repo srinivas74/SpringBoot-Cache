@@ -36,7 +36,32 @@ implementing cache in spring boot using ehcache 3
  
  In ehcache.xml make sure it matches where CacheConfig(should implement CacheEventListener) loacted.
  
+ ## for java configuration
+ 
+ 
  ```bash
+ 
+  @Bean
+	    public JCacheCacheManager jCacheCacheManager(JCacheManagerFactoryBean jCacheManagerFactoryBean){
+	        JCacheCacheManager jCacheCacheManager = new JCacheCacheManager();
+	        jCacheCacheManager.setCacheManager(jCacheManagerFactoryBean.getObject());
+	        return jCacheCacheManager;
+	    }
+
+	    @Bean
+	    public JCacheManagerFactoryBean jCacheManagerFactoryBean() throws URISyntaxException {
+	        JCacheManagerFactoryBean jCacheManagerFactoryBean = new JCacheManagerFactoryBean();
+	        jCacheManagerFactoryBean.setCacheManagerUri(getClass().getResource("/ehcache.xml").toURI());
+	        return jCacheManagerFactoryBean;
+	    }
+ 
+ ```
+ 
+ Use this to get hold of cache manager
+ 
+ 
+ 
+  ```bash
  references : - https://springframework.guru/using-ehcache-3-in-spring-boot/
  ```
  
